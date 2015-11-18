@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JS Training</title>
+</head>
+<body>
+
+  <input id="user" type="text" value="jcenturion"></input> <button onclick="retrieveRepos()">Show Repositories</button>
+
+  <script type="text/javascript">
+  function resetList() {
+    var $repositories = document.getElementById('repositories');
+
+    if ($repositories) {
+      document.body.removeChild($repositories);
+    }
+  }
+
+  function retrieveRepos(){
+    var user   = document.getElementById('user').value;
+    var apiUrl = 'https://api.github.com/users/' + user + '/repos';
+    var xhr    = new XMLHttpRequest();
+
+    resetList();
+
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        var data = JSON.parse(xhr.responseText);
+        var $ul  = document.createElement('UL');
+
+        $ul.id = 'repositories';
+
+        document.body.appendChild($ul);
+
+        data.forEach(function (repo) {
+          var $li = document.createElement('LI');
+
+          $li.innerText = repo.name;
+
+          $ul.appendChild($li);
+        });
+      }
+    };
+    xhr.open('GET', apiUrl, true);
+    xhr.send();
+  }
+  </script>
+
+  <!--
+    Add a link to the repository
+  -->
+</body>
+</html>
