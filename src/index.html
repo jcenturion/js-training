@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JS Training</title>
+</head>
+<body>
+  <p>Polyfills</p>
+
+  <script type="text/javascript">
+  // Polyfill
+  String.prototype.trimLeft = String.prototype.trimLeft || function () {
+    return String(this).replace(/^\s+/, '');
+  };
+  </script>
+</body>
+</html>
