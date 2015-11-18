@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JS Training</title>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+</head>
+<body>
+  <input id="user" type="text" value="jcenturion"></input> <button id='show'>Show Repositories</button>
+
+  <div class="container"></div>
+
+  <script type="text/javascript">
+  (function ($) {
+    $('#show').click(function retrieveRepos() {
+      var user   = $('#user').val();
+      var apiUrl = 'https://api.github.com/users/' + user + '/repos';
+      var $ul    = $('<ul></ul>');
+
+      $.get(apiUrl)
+       .then(function (data) {
+          $('ul').remove();
+
+          data.forEach(function (repo) {
+            var $li = $('<li></li>');
+
+            $li.text(repo.name);
+
+            $ul.append($li);
+          });
+
+          $('body').append($ul);
+       });
+    });
+  })($);
+  </script>
+</body>
+</html>

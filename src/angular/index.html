@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JS Training</title>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.js"></script>
+  <script type="text/javascript" src="scripts/app.js"></script>
+</head>
+<body ng-app="demoApp">
+  <div ng-controller="appCtrl">
+    <input type="text" value="jcenturion" ng-model="username"></input> <button ng-click="onClick()">Show Repositories</button>
+    <ul>
+      <li ng-repeat="repo in repos">{{repo.name}}</li>
+    </ul>
+  </div>
+</body>
+</html>
